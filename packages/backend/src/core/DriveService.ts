@@ -355,7 +355,7 @@ export class DriveService {
 			if (isAnimated) {
 				thumbnail = await this.imageProcessingService.convertSharpToWebp(sharp(path, { animated: true }), 374, 317, { alphaQuality: 70 });
 			} else {
-				thumbnail = await this.imageProcessingService.convertSharpToWebp(img, 498, 422);
+				thumbnail = await this.imageProcessingService.convertSharpToWebp(img, 996, 560);
 			}
 		} catch (err) {
 			this.registerLogger.warn('thumbnail not created (an error occurred)', err as Error);
