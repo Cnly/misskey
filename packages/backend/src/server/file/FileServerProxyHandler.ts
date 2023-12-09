@@ -142,7 +142,7 @@ export class FileServerProxyHandler {
 		}
 
 		if ('static' in query) {
-			return this.imageProcessingService.convertSharpToWebpStream(await sharpBmp(file.path, file.mime), 498, 422);
+			return this.imageProcessingService.convertSharpToWebpStream(await sharpBmp(file.path, file.mime), 996, 560);
 		}
 
 		if ('preview' in query) {
