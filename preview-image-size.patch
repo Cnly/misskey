@@ -1,0 +1,26 @@
+diff --git a/packages/backend/src/core/DriveService.ts b/packages/backend/src/core/DriveService.ts
+index 484f4fc52..a5af206a8 100644
+--- a/packages/backend/src/core/DriveService.ts
++++ b/packages/backend/src/core/DriveService.ts
+@@ -353,7 +353,7 @@ export class DriveService {
+ 			if (isAnimated) {
+ 				thumbnail = await this.imageProcessingService.convertSharpToWebp(sharp(path, { animated: true }), 374, 317, { alphaQuality: 70 });
+ 			} else {
+-				thumbnail = await this.imageProcessingService.convertSharpToWebp(img, 498, 422);
++				thumbnail = await this.imageProcessingService.convertSharpToWebp(img, 996, 560);
+ 			}
+ 		} catch (err) {
+ 			this.registerLogger.warn('thumbnail not created (an error occurred)', err as Error);
+diff --git a/packages/backend/src/server/FileServerService.ts b/packages/backend/src/server/FileServerService.ts
+index 11721263d..403686ba2 100644
+--- a/packages/backend/src/server/FileServerService.ts
++++ b/packages/backend/src/server/FileServerService.ts
+@@ -296,7 +296,7 @@ export class FileServerService {
+ 					};
+ 				}
+ 			} else if ('static' in request.query) {
+-				image = this.imageProcessingService.convertSharpToWebpStream(await sharpBmp(file.path, file.mime), 498, 422);
++				image = this.imageProcessingService.convertSharpToWebpStream(await sharpBmp(file.path, file.mime), 996, 560);
+ 			} else if ('preview' in request.query) {
+ 				image = this.imageProcessingService.convertSharpToWebpStream(await sharpBmp(file.path, file.mime), 200, 200);
+ 			} else if ('badge' in request.query) {

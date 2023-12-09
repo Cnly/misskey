@@ -1,0 +1,13 @@
+diff --git a/.github/workflows/docker.yml b/.github/workflows/docker.yml
+index 08cb91c2d..49ddfd111 100644
+--- a/.github/workflows/docker.yml
++++ b/.github/workflows/docker.yml
+@@ -22,7 +22,7 @@ jobs:
+         id: meta
+         uses: docker/metadata-action@v5
+         with:
+-          images: misskey/misskey
++          images: cnly/misskey
+           tags: |
+             type=edge
+             type=ref,event=pr
