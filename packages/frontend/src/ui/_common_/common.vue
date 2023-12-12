@@ -35,8 +35,6 @@ SPDX-License-Identifier: AGPL-3.0-only
 	</div>
 </TransitionGroup>
 
-<XStreamIndicator/>
-
 <div v-if="pendingApiRequestsCount > 0" id="wait"></div>
 
 <div v-if="dev" id="devTicker"><span>DEV BUILD</span></div>
@@ -58,7 +56,6 @@ import { i18n } from '@/i18n.js';
 import { defaultStore } from '@/store.js';
 import { globalEvents } from '@/events';
 
-const XStreamIndicator = defineAsyncComponent(() => import('./stream-indicator.vue'));
 const XUpload = defineAsyncComponent(() => import('./upload.vue'));
 
 const dev = _DEV_;
