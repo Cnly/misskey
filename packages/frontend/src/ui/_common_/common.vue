@@ -89,8 +89,6 @@ SPDX-License-Identifier: AGPL-3.0-only
 	</div>
 </component>
 
-<XStreamIndicator/>
-
 <div v-if="pendingApiRequestsCount > 0" id="wait"></div>
 
 <div v-if="dev" id="devTicker"><span style="animation: dev-ticker-blink 2s infinite;">DEV BUILD</span></div>
@@ -114,7 +112,6 @@ import { prefer } from '@/preferences.js';
 import { globalEvents } from '@/events.js';
 import XDrawerMenu from '@/ui/_common_/navbar-for-mobile.vue';
 
-const XStreamIndicator = defineAsyncComponent(() => import('./stream-indicator.vue'));
 const XUpload = defineAsyncComponent(() => import('./upload.vue'));
 const XWidgets = defineAsyncComponent(() => import('./widgets.vue'));
 
