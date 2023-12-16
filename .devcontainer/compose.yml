@@ -28,9 +28,7 @@ services:
 
   db:
     restart: unless-stopped
-    # The official image is amd64 only (also see NOTE in pgroonga-postgres.Dockerfile)
-    platform: "linux/amd64"
-    image: groonga/pgroonga:3.1.5-alpine-15
+    image: groonga/pgroonga:3.1.5-debian-15
     networks:
       - internal_network
     environment:
