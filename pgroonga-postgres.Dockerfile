@@ -2,6 +2,8 @@
 # NOTE: devcontainer on arm mac somehow fails to start the build arm64 image, so
 # in that environment we pull the official image instead.
 
+# Reference: https://github.com/pgroonga/docker
+
 FROM postgres:15-bookworm
 
 # Add Tini
