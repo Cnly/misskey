@@ -111,6 +111,7 @@ export class SearchService {
 	@bindThis
 	public async indexNote(note: MiNote): Promise<void> {
 		if (note.text == null && note.cw == null) return;
+		if (!['home', 'public'].includes(note.visibility)) return;
 
 		if (this.meilisearch) {
 			switch (this.meilisearchIndexScope) {
@@ -145,6 +146,8 @@ export class SearchService {
 
 	@bindThis
 	public async unindexNote(note: MiNote): Promise<void> {
+		if (!['home', 'public'].includes(note.visibility)) return;
+
 		if (this.meilisearch) {
 			this.meilisearchNoteIndex!.deleteDocument(note.id);
 		}
@@ -177,20 +180,17 @@ export class SearchService {
 				}
 			}
 			const res = await this.meilisearchNoteIndex!.search(q, {
+				sort: ['createdAt:desc'],
 				matchingStrategy: 'all',
-				attributesToRetrieve: ['id'],
+				attributesToRetrieve: ['id', 'createdAt'],
 				filter: compileQuery(filter),
 				limit: pagination.limit,
 			});
 			if (res.hits.length === 0) return [];
-			// We add support for searching non-public notes below. Not officially supported by Misskey.
-			// Yes, the number of items may be less than the limit.
-			const query = this.queryService.makePaginationQuery(this.notesRepository.createQueryBuilder('note'));
-			query.andWhereInIds(res.hits.map(x => x.id));
-			this.queryService.generateVisibilityQuery(query, me);
-			if (me) this.queryService.generateMutedUserQuery(query, me);
-			if (me) this.queryService.generateBlockedUserQuery(query, me);
-			return await query.getMany();
+			const notes = await this.notesRepository.findBy({
+				id: In(res.hits.map(x => x.id)),
+			});
+			return notes.sort((a, b) => a.id > b.id ? -1 : 1);
 		} else {
 			const query = this.queryService.makePaginationQuery(this.notesRepository.createQueryBuilder('note'), pagination.sinceId, pagination.untilId);
 
