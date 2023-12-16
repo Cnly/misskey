@@ -14,6 +14,7 @@ import type { MiDriveFile } from './DriveFile.js';
 @Index('IDX_NOTE_TAGS', { synchronize: false })
 @Index('IDX_NOTE_MENTIONS', { synchronize: false })
 @Index('IDX_NOTE_VISIBLE_USER_IDS', { synchronize: false })
+@Index('IDX_PGROONGA_NOTE_TEXT', { synchronize: false })
 export class MiNote {
 	@PrimaryColumn(id())
 	public id: string;
