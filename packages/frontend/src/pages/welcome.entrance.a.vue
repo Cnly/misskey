@@ -6,7 +6,6 @@ SPDX-License-Identifier: AGPL-3.0-only
 <template>
 <div v-if="meta" :class="$style.root">
 	<MkFeaturedPhotos :class="$style.bg"/>
-	<XTimeline :class="$style.tl"/>
 	<div :class="$style.shape1"></div>
 	<div :class="$style.shape2"></div>
 	<div :class="$style.logoWrapper">
@@ -31,7 +30,6 @@ SPDX-License-Identifier: AGPL-3.0-only
 <script lang="ts" setup>
 import { ref } from 'vue';
 import * as Misskey from 'misskey-js';
-import XTimeline from './welcome.timeline.vue';
 import MarqueeText from '@/components/MkMarquee.vue';
 import MkFeaturedPhotos from '@/components/MkFeaturedPhotos.vue';
 import misskeysvg from '/client-assets/misskey.svg';
