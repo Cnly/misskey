@@ -28,7 +28,7 @@ services:
 
   db:
     restart: unless-stopped
-    image: postgres:18-alpine
+    image: groonga/pgroonga:3.2.5-debian-15
     networks:
       - internal_network
     environment:
